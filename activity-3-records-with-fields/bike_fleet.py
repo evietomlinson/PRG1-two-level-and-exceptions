@@ -12,11 +12,11 @@ fields.
 LOW_BATTERY = 30
 
 fleet = [
-    {"id": "B-104", "station": "Kings Cross", "battery": 88, "available": True},
-    {"id": "B-107", "station": "Shoreditch", "battery": 22, "available": True},
-    {"id": "B-111", "station": "Kings Cross", "battery": 64, "available": False},
-    {"id": "B-118", "station": "Peckham", "battery": 15, "available": True},
-    {"id": "B-120", "station": "Shoreditch", "battery": 91, "available": False},
+    {"id": "B-104", "station": "Kings Cross", "battery": 88, "available": True}, #hireable
+    {"id": "B-107", "station": "Shoreditch", "battery": 22, "available": True}, #needs charging 
+    {"id": "B-111", "station": "Kings Cross", "battery": 64, "available": False}, 
+    {"id": "B-118", "station": "Peckham", "battery": 15, "available": True}, #needs charging 
+    {"id": "B-120", "station": "Shoreditch", "battery": 91, "available": False}, 
 ]
 
 
@@ -53,6 +53,13 @@ def average_battery(fleet):
         total = total + bike["battery"]
     return total / len(fleet)
 
+def average_battery_of_avaliable(fleet):
+    total = 0 
+    for bike in fleet: 
+        if bike == ["avaliable"]:
+            total = total + bike["battery"]
+    return total / len(bike["avaliable"])
+
 
 print(f"{len(fleet)} bikes in the fleet")
 print(f"Fields on each bike: {list(fleet[0].keys())}")
@@ -60,4 +67,6 @@ print("---")
 print(f"Ready to hire: {ready_to_hire(fleet)}")
 print(f"Needs charging: {needs_charging(fleet)}")
 print(f"At Kings Cross: {bikes_at(fleet, 'Kings Cross')}")
+print(f"At Shoreditch: {bikes_at(fleet, 'Shoreditch')}")
 print(f"Average battery: {average_battery(fleet):.1f}%")
+print(f"Average battery of avaliable bikes: {average_battery_of_avaliable(bike["avaliable"]):.1f}%")
